@@ -1,7 +1,7 @@
 /**
  * 
  */
-package util;
+package com.truglobal.util;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,6 +16,8 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -58,6 +60,8 @@ public class Util {
 					try {
 						By locator = getElementIdentifier(row, headers.get(i));
 						WebElement element = driver.findElement(locator);
+						WebDriverWait wait = new WebDriverWait(driver, 120);
+						wait.until(ExpectedConditions.visibilityOf(element));
 						if (element.isDisplayed()) {
 							logger.info("The element is visible on the screen");
 							return element;
@@ -97,6 +101,10 @@ public class Util {
 				} else {
 					return null;
 				}
+			}
+
+			if (row[index] == null || row[index].equalsIgnoreCase("")) {
+				return null;
 			}
 
 			switch (locatorType) {

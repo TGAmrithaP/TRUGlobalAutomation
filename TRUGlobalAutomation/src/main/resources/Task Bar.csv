@@ -1,0 +1,4 @@
+variableName,default,id,css,xpath,name,linkText,partialLinkText,className
+Today’s Tasks ,name,,,//span[text()='Today’s Tasks'],,,,slds-card__header-title slds-truncate
+viewAll,xpath,,,//span[text()='View All'],,,,viewAllLabel
+Verifytaskbar,id,Input-308,,//input[@id='input-308'],Task-search-input,,,slds-input 

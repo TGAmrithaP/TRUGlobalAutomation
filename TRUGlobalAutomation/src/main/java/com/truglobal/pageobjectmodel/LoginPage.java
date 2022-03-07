@@ -1,7 +1,7 @@
 /**
  * 
  */
-package pom;
+package com.truglobal.pageobjectmodel;
 
 import java.io.IOException;
 
@@ -13,8 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.opencsv.exceptions.CsvException;
 
-import util.ServiceLocator;
-import util.Util;
+import com.truglobal.util.ServiceLocator;
+import com.truglobal.util.Util;
 
 /**
  * @author Kumara Swamy
@@ -41,11 +41,6 @@ public class LoginPage {
 	public void enterPassword() throws InterruptedException {
 		WebElement passwordInputField = util.findElement("passwordInputField");
 		passwordInputField.sendKeys(service.getTestCaseDataColumn(0, "password"));
-	}
-
-	public void clickContinueButton() throws InterruptedException {
-		WebElement continueButton = util.findElement("continueButton");
-		continueButton.click();
 	}
 
 	public void clickSignInButton() throws InterruptedException {

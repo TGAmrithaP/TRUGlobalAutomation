@@ -1,3 +1,0 @@
-variableName,default,id,css,xpath,name,linkText,partialLinkText,className
-addToCartButton,,"add-to-cart-button",,,,,,,
-checkoutButton,,,,"//*[@id='attach-sidesheet-checkout-button']/span/input",,,,,

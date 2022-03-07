@@ -1,6 +1,0 @@
-variableName,default,id,css,xpath,name,linkText,partialLinkText,className
-usernameInputField,,ap_email,,,,,,,
-passwordInputField,,ap_password,,,,,,,
-continueButton,,continue,,,,,,,
-signInButton,,signInSubmit,,,,,,,
-plpProduct,,,,"//a//span[contains(text(),'%s')]",,,,,

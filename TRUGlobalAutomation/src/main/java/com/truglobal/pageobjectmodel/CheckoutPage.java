@@ -1,7 +1,7 @@
 /**
  * 
  */
-package pom;
+package com.truglobal.pageobjectmodel;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,8 +16,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.opencsv.exceptions.CsvException;
 
-import util.ServiceLocator;
-import util.Util;
+import com.truglobal.util.ServiceLocator;
+import com.truglobal.util.Util;
 
 /**
  * @author Kumara Swamy
@@ -26,7 +26,6 @@ import util.Util;
 public class CheckoutPage {
 	WebDriver driver;
 	ServiceLocator service = ServiceLocator.getInstance();
-	String product = service.getTestCaseDataColumn(0, "productName");
 	Util util;
 
 	public CheckoutPage(WebDriver driver) throws IOException, CsvException {
