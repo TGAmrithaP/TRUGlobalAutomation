@@ -7,7 +7,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-//@Test
+@Test
 @RunWith(Cucumber.class)
 @CucumberOptions(features="C:\\Users\\TG1698\\git\\TRUGlobalAutomation\\TRUGlobalAutomation\\src\\test\\resources\\Features\\",
 dryRun= false,   //Only if we want to get Only Snippet without running whole program than put as true 
@@ -20,10 +20,7 @@ plugin = { "pretty",  "com.epam.reportportal.cucumber.StepReporter" }
 // tags = {"@SmokeTest" , "@End2End"} => AND
 // tags = {"@SmokeTest, @End2End"} => OR
 
-
-
-
-		)
+)
 
 
 public class Runner extends AbstractTestNGCucumberTests{

@@ -4,7 +4,8 @@ Feature: Verify Login
     Given launch the browser
     When The Aplication is loaded
     And Enter the user login credentials
-    And Click on App launcher and search for PROJECTS in the items list
-    And Click on the PROJECTS item
-    Then Verify Project name on home page
-    Then testcase is completed
+    And User navigates to OrderManagement and Click Create Order
+    And User enters new order information
+    And User searches an Item
+    And Verify Warning and Order Confirmation message
+    #Then testcase is completed

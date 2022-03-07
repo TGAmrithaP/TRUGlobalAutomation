@@ -1,5 +1,4 @@
-variableName,default,id,css,xpath,name,linkText,partialLinkText,className
-usernameInputField,xpath,username ,username,//input[@type='email'] ,input[id='username'],,,
-passwordInputField,id,password,//input[@type='password'],pw,input[id='password'],,,
-continueButton,css,continue,.a-button-inner > #continue,//input[@id='continue'],,,,
-signInButton,xpath,Login, //input[@type='submit'],Login,input[value='Log In'],,,
+variableName,default,id,css,xpath,xpath1,xpath2,xpath3,xpath4,name,linkText,partialLinkText,className
+usernameInputField,xpath,userid,#userid,//input[@id='userid'],xpath=//form[@id='Login']/input,//input[@placeholder='User ID'],//label[@id='useridLabel']/following-sibling::input[1],//label[@name='useridLabel']/following-sibling::input[1],userid,,,
+passwordInputField,xpath,password,#password,//input[@id='password'],xpath=//form[@id='Login']/input[2],//input[@placeholder='Password'],//label[@id='passwordLabel']/following-sibling::input[1],//label[@name='passwordLabel']/following-sibling::input[1],password,,,
+signInButton,xpath,btnActive,#btnActive,//button[@id='btnActive'],//form[@id='Login']/button,//button[text()='  Sign In '],//a[@id='forgotLink']/following-sibling::button,//a[text()='Forgot Password']/following-sibling::button,btnActive,,,

@@ -47,10 +47,13 @@ public class Util {
 		}
 	}
 
-	public WebElement findElement(String variableName) throws InterruptedException {
-		System.out.println("");
-		String[] row = csvAllRows.stream().filter(eachRow -> eachRow[0].equalsIgnoreCase(variableName)).findFirst()
-				.get();
+	public WebElement findElement(String variableName) {
+		Optional<String[]> optional = csvAllRows.stream().filter(eachRow -> eachRow[0].equalsIgnoreCase(variableName))
+				.findFirst();
+		String[] row = null;
+		if (optional.isPresent()) {
+			row = optional.get();
+		}
 		logger.info(String.format("Filtered row from the CSV file %s", Arrays.asList(row)));
 		if (row != null) {
 			while (true) {
@@ -61,6 +64,7 @@ public class Util {
 						By locator = getElementIdentifier(row, headers.get(i));
 						WebElement element = driver.findElement(locator);
 						WebDriverWait wait = new WebDriverWait(driver, 120);
+//						wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 						wait.until(ExpectedConditions.visibilityOf(element));
 						if (element.isDisplayed()) {
 							logger.info("The element is visible on the screen");
@@ -68,9 +72,13 @@ public class Util {
 						}
 						Thread.sleep(1000);
 					} catch (Exception e) {
-//						System.out.println(row[0] + " failed with " + headers.get(i));
 						logger.info(String.format("%s failed with %s", row[0], headers.get(i)));
-						Thread.sleep(1000);
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+							Thread.currentThread().interrupt();
+						}
 						Date endTime = new Date();
 						long responseTime = endTime.getTime() / 1000;
 						if (responseTime >= maxTime) {
@@ -85,7 +93,6 @@ public class Util {
 	}
 
 	public By getElementIdentifier(String[] row, String locatorType) {
-//		System.out.println(row[0] + " trying with " + locatorType);
 		logger.info(String.format("%s trying with %s", row[0], locatorType));
 		if (row.length > 1) {
 			locatorType = locatorType.toLowerCase().trim();
@@ -96,7 +103,6 @@ public class Util {
 				locatorType = row[index];
 				if (locatorType != null && !locatorType.equalsIgnoreCase("")) {
 					index = headers.indexOf(locatorType);
-//					System.out.println(row[0] + " default is " + locatorType);
 					logger.info(String.format("%s default is %s", row[0], locatorType));
 				} else {
 					return null;
@@ -115,10 +121,18 @@ public class Util {
 			case "name":
 				return By.name(row[index]);
 			case "linktext":
-				return By.xpath(row[index]);
+				return By.linkText(row[index]);
 			case "partiallinktext":
-				return By.xpath(row[index]);
+				return By.partialLinkText(row[index]);
 			case "classname":
+				return By.className(row[index]);
+			case "xpath1":
+				return By.xpath(row[index]);
+			case "xpath2":
+				return By.xpath(row[index]);
+			case "xpath3":
+				return By.xpath(row[index]);
+			case "xpath4":
 				return By.xpath(row[index]);
 			default:
 				index = headers.indexOf("xpath");

@@ -19,31 +19,30 @@ import com.truglobal.util.Util;
  * @author Kumara Swamy
  *
  */
-public class LoginPage {
-	private static final Logger logger = LogManager.getLogger(LoginPage.class);
+public class OrderManagement {
+	private static final Logger logger = LogManager.getLogger(OrderManagement.class);
 	WebDriver driver;
 	ServiceLocator service = ServiceLocator.getInstance();
 	Util util;
 	SeleniumCommands selenium;
 
-	public LoginPage(WebDriver driver) throws IOException, CsvException {
+	public OrderManagement(WebDriver driver) throws IOException, CsvException {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		util = new Util(driver);
-		util.readCSV("LoginPage.csv");
+		util.readCSV("OrderManagementNavigation.csv");
 		selenium = new SeleniumCommands(driver, util);
 	}
 
-	public void enterUsername() {
-		selenium.sendKeys("usernameInputField", service.getTestCaseDataColumn(0, "email"));
+	public void clickOrderManagementNav() {
+		selenium.click("navorderManagement");
 	}
 
-	public void enterPassword() {
-		selenium.sendKeys("passwordInputField", service.getTestCaseDataColumn(0, "password"));
+	public void clickOrderManagementTab() {
+		selenium.click("navorderManagementTab");
 	}
 
-	public void clickSignInButton() throws InterruptedException {
-		selenium.click("signInButton");
+	public void clickCreateButton() {
+		selenium.click("createButton");
 	}
-
 }
