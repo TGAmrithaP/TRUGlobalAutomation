@@ -1,0 +1,4 @@
+variableName,default,id,css,xpath,name,linkText,partialLinkText,className
+topPicks,,,,"//h2[text()='Top picks for you']",,,,,
+searchInputField,,twotabsearchtextbox,,,,,,,
+searchFieldSuggestion,,,,"(//div[@aria-label='%s'])[1]",,,,,

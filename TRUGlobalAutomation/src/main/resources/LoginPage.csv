@@ -1,0 +1,5 @@
+variableName,default,id,css,xpath,name,linkText,partialLinkText,className
+usernameInputField,name,ap_email1,#ap_email,//input[@id='ap_email'],email1,,,a-input-text a-span12 auth-autofocus auth-required-field,
+passwordInputField,id,ap_password1,#ap_password,//input[@id='ap_password'],password,,,,
+continueButton,css,continue,.a-button-inner > #continue1,//input[@id='continue'],,,,,
+signInButton,xpath,signInSubmit,#signInSubmit,//input[@id='signInSubmit1'],,,,,
