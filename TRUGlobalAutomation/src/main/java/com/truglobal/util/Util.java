@@ -92,6 +92,43 @@ public class Util {
 		}
 	}
 
+	public List<WebElement> findElements(String variableName) {
+		Optional<String[]> optional = csvAllRows.stream().filter(eachRow -> eachRow[0].equalsIgnoreCase(variableName))
+				.findFirst();
+		String[] row = null;
+		if (optional.isPresent()) {
+			row = optional.get();
+		}
+		logger.info(String.format("Filtered row from the CSV file %s", Arrays.asList(row)));
+		if (row != null) {
+			while (true) {
+				Date startTime = new Date();
+				long maxTime = startTime.getTime() / 1000 + 120 * 1000;
+				for (int i = 1; i < row.length; i++) {
+					try {
+						By locator = getElementIdentifier(row, headers.get(i));
+						return driver.findElements(locator);
+					} catch (Exception e) {
+						logger.info(String.format("%s failed with %s", row[0], headers.get(i)));
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+							Thread.currentThread().interrupt();
+						}
+						Date endTime = new Date();
+						long responseTime = endTime.getTime() / 1000;
+						if (responseTime >= maxTime) {
+							return null;
+						}
+					}
+				}
+			}
+		} else {
+			return null;
+		}
+	}
+
 	public By getElementIdentifier(String[] row, String locatorType) {
 		logger.info(String.format("%s trying with %s", row[0], locatorType));
 		if (row.length > 1) {

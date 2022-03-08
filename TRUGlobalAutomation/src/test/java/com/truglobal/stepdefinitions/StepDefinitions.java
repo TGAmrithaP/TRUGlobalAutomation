@@ -15,10 +15,12 @@ import org.testng.annotations.Listeners;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.opencsv.exceptions.CsvException;
 import com.truglobal.pageobjectmodel.CreateOrder;
+import com.truglobal.pageobjectmodel.HomePage;
 import com.truglobal.pageobjectmodel.LoginPage;
 import com.truglobal.pageobjectmodel.OrderManagement;
 import com.truglobal.util.ServiceLocator;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
@@ -35,11 +37,12 @@ public class StepDefinitions {
 	LoginPage loginPage;
 	OrderManagement orderManagement;
 	CreateOrder createOrder;
+	HomePage homepage;
 
-	@SuppressWarnings("static-access")
 	@Given("^launch the browser$")
 	public void launchBrowser() throws IOException, CsvException {
-		System.setProperty("webdriver.chrome.driver", "C:/Users/TG1698/Downloads/chromedriver_win32 (1)/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				"C:/Users/TG1698/Downloads/chromedriver_win32 (1)/chromedriver.exe");
 		logger.info("Starting ChromeDriver");
 		driver = new ChromeDriver();
 		logger.info("ChromeDriver Started Successfully");
@@ -51,6 +54,7 @@ public class StepDefinitions {
 		loginPage = new LoginPage(driver);
 		orderManagement = new OrderManagement(driver);
 		createOrder = new CreateOrder(driver);
+		homepage = new HomePage(driver);
 	}
 
 	@Given("^The Aplication is loaded$")
@@ -121,6 +125,43 @@ public class StepDefinitions {
 		createOrder.verifyOrderConfirmationMessage();
 		createOrder.clickOKButton();
 		logger.info("Start of verify messages");
+	}
+
+	@And("^Open Lookup Table and Navigate to Add Item$")
+	public void OpenLookupTableandNavigateToAddItem() throws Throwable {
+		logger.info("Start of Adding Item into LookUp");
+		homepage.clickActionsMenu();
+		homepage.clickSetupAndMain();
+//		Thread.sleep(2000);
+		homepage.clicksetupSelection();
+//		Thread.sleep(2000);
+		homepage.clickOrderManagement();
+//		Thread.sleep(5000);
+		homepage.enterSearchField();
+//		Thread.sleep(2000);
+		homepage.clickSearchButton();
+//		Thread.sleep(2000);
+		homepage.clickmanageOrderLookupsMain();
+		Thread.sleep(5000);
+		homepage.clickmanageOrderLookupsMain();
+
+		logger.info("End of verify messages");
+	}
+
+	@And("^Add Item to LookUp$")
+	public void addItemToLookUp() throws InterruptedException {
+		homepage.enterLookupType();
+		homepage.clickOrderSearchButton();
+		homepage.addNewLookupCode();
+		homepage.enterLookupCode();
+		homepage.enterDisplaySequence();
+		homepage.clickStartDateCalendarIcon();
+		homepage.selectDateOnCalendar();
+		homepage.clickEndDateCalendarIcon();
+		homepage.selectDateOnCalendar();
+		homepage.enterMeaning();
+		Thread.sleep(5000);
+		homepage.clickSaveAndCloseButton();
 	}
 
 	@When("^testcase is completed$")
