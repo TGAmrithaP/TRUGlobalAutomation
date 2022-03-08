@@ -118,7 +118,6 @@ public class StepDefinitions {
 	@When("^Verify Warning and Order Confirmation message$")
 	public void verifyWarningAndOrderConfirmation() throws Throwable {
 		logger.info("Start of verify messages");
-//		createOrder.selectWarningFrame();
 		createOrder.verifyWarningMessage();
 		createOrder.clickSubmitOrderButton();
 		Thread.sleep(5000);
@@ -160,6 +159,18 @@ public class StepDefinitions {
 		homepage.clickEndDateCalendarIcon();
 		homepage.selectDateOnCalendar();
 		homepage.enterMeaning();
+		Thread.sleep(5000);
+		homepage.clickSaveAndCloseButton();
+	}
+
+	@And("^Delete Lookup Code$")
+	public void deleteItemFromLookUp() throws InterruptedException {
+		homepage.clickmanageOrderLookupsMain();
+		homepage.enterLookupType();
+		homepage.clickOrderSearchButton();
+		homepage.clickLookupCodeRow();
+		homepage.clickDeleteIcon();
+		homepage.clickYesButton();
 		Thread.sleep(5000);
 		homepage.clickSaveAndCloseButton();
 	}

@@ -123,4 +123,16 @@ public class HomePage {
 		selenium.click("saveAndCloseButton");
 	}
 
+	public void clickLookupCodeRow() {
+		selenium.click("lookUpCodeRow");
+	}
+
+	public void clickDeleteIcon() {
+		selenium.click("deleteIcon");
+	}
+
+	public void clickYesButton() {
+		selenium.click("yesButton");
+	}
+
 }
